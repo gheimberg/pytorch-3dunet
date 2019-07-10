@@ -247,7 +247,10 @@ class UNet3DTrainer:
             if isinstance(input, tuple) or isinstance(input, list):
                 return tuple([_move_to_device(x) for x in input])
             else:
-                return input.to(self.device)
+                if torch.cuda.is_available():
+                    return input.to(self.device)
+                else:
+                    return input
 
         t = _move_to_device(t)
         weight = None
