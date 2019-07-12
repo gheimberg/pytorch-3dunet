@@ -71,10 +71,17 @@ loaders:
   label_internal_path: label
   # paths to the training datasets
   train_path:
-    - 'resources/random_label3D.h5'
+    #- 'resources/random_label3D.h5'
+    - '../suki_fractals/suki_files/h5/0.h5'
+    - '../suki_fractals/suki_files/h5/1.h5'
+    - '../suki_fractals/suki_files/h5/2.h5'    
+    - '../suki_fractals/suki_files/h5/3.h5'    
+    
   # paths to the validation datasets
   val_path:
-    - 'resources/random_label3D.h5'
+    #- 'resources/random_label3D.h5'
+     - '../suki_fractals/suki_files/h5/4.h5'
+    
   # how many subprocesses to use for data loading
   num_workers: 8
   # data transformations/augmentations
