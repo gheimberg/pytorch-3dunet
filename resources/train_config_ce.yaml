@@ -71,18 +71,21 @@ loaders:
   label_internal_path: label
   # paths to the training datasets
   train_path:
-    - '../suki_fractals/suki_files/h5/0.h5'
-    - '../suki_fractals/suki_files/h5/1.h5'
-    - '../suki_fractals/suki_files/h5/2.h5'    
-    - '../suki_fractals/suki_files/h5/3.h5'    
-    - '../suki_fractals/suki_files/h5/4.h5'    
+    #- 'h5_fractals/0.h5'
+    #- 'h5_fractals/1.h5'
+    #- 'h5_fractals/2.h5'    
+    #- 'h5_fractals/3.h5'     
     #- 'resources/random_label3D.h5'
+    - 'trachea_test/0.h5'
     
     
   # paths to the validation datasets
   val_path:
     #- 'resources/random_label3D.h5'
-    - '../suki_fractals/suki_files/h5/5.h5'
+    #- 'h5_fractals/4.h5'
+    - 'trachea_test/0.h5'
+    
+
  
   # how many subprocesses to use for data loading
   num_workers: 8
@@ -90,7 +93,7 @@ loaders:
   transformer:
     train:
       raw:
-        - name: Normalize
+        #- name: Normalize
         - name: RandomFlip
         - name: RandomRotate90
         - name: RandomRotate
@@ -100,7 +103,7 @@ loaders:
           mode: reflect
         - name: ElasticDeformation
           spline_order: 3
-        - name: RandomContrast
+        #- name: RandomContrast
         - name: ToTensor
           expand_dims: true
       label:
@@ -118,7 +121,7 @@ loaders:
           dtype: 'long'
     test:
       raw:
-        - name: Normalize
+        #- name: Normalize
         - name: ToTensor
           expand_dims: true
       label:

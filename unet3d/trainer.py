@@ -154,11 +154,10 @@ class UNet3DTrainer:
         self.model.train()
 
         for i, t in enumerate(train_loader):
-            self.logger.info(
-                f'Training iteration {self.num_iterations}. Batch {i}. Epoch [{self.num_epoch}/{self.max_num_epochs - 1}]')
+            #self.logger.info(
+            #    f'Training iteration {self.num_iterations}. Batch {i}. Epoch [{self.num_epoch}/{self.max_num_epochs - 1}]')
 
             input, target, weight = self._split_training_batch(t)
-
             output, loss = self._forward_pass(input, target, weight)
 
             train_losses.update(loss.item(), self._batch_size(input))
@@ -221,7 +220,7 @@ class UNet3DTrainer:
             self.model.eval()
             with torch.no_grad():
                 for i, t in enumerate(val_loader):
-                    self.logger.info(f'Validation iteration {i}')
+                    #self.logger.info(f'Validation iteration {i}')
 
                     input, target, weight = self._split_training_batch(t)
 
