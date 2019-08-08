@@ -1,5 +1,6 @@
 import logging
 import os
+import pdb
 
 import numpy as np
 import torch
@@ -130,6 +131,7 @@ class UNet3DTrainer:
 
     def fit(self):
         for _ in range(self.num_epoch, self.max_num_epochs):
+
             # train for one epoch
             should_terminate = self.train(self.loaders['train'])
 
@@ -154,8 +156,8 @@ class UNet3DTrainer:
         self.model.train()
 
         for i, t in enumerate(train_loader):
-            #self.logger.info(
-            #    f'Training iteration {self.num_iterations}. Batch {i}. Epoch [{self.num_epoch}/{self.max_num_epochs - 1}]')
+            self.logger.info(
+                f'Training iteration {self.num_iterations}. Batch {i}. Epoch [{self.num_epoch}/{self.max_num_epochs - 1}]')
 
             input, target, weight = self._split_training_batch(t)
             output, loss = self._forward_pass(input, target, weight)

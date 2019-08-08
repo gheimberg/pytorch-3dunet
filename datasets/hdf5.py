@@ -9,6 +9,8 @@ from torch.utils.data import Dataset, DataLoader, ConcatDataset
 import augment.transforms as transforms
 from unet3d.utils import get_logger
 
+import pdb
+
 
 class SliceBuilder:
     def __init__(self, raw_datasets, label_datasets, weight_dataset, patch_shape, stride_shape):
@@ -146,8 +148,10 @@ class HDF5Dataset(Dataset):
             # File "h5py/_proxy.pyx", line 84, in h5py._proxy.H5PY_H5Dread
             # OSError: Can't read data (inflate() failed)
             self.raws = [input_file[internal_path][...] for internal_path in raw_internal_path]
+
             # calculate global mean and std for Normalization augmentation
             mean, std = self._calculate_mean_std(self.raws[0])
+         
 
             self.transformer = transforms.get_transformer(transformer_config, mean, std, phase)
             self.raw_transform = self.transformer.raw_transform()
